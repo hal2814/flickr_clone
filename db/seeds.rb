@@ -6,34 +6,36 @@ Tag.destroy_all
 20.times do |index|
   User.create!(username: Faker::LordOfTheRings.character,
                   email: Faker::Internet.email,
-                  encrypted_password: Faker::Internet.password,
-                  password_salt: Faker::Code.asin,
-                  admin: false,
-                  privilege: true,)
+                  password: Faker::Internet.password
+                )
 end
 
+p "Created #{User.count} users"
+
 100.times do |index|
-  Photo.create!(question: Faker::ChuckNorris.fact,
-                  category: Faker::Hacker.noun,
+  Photo.create!(image: Faker::LoremPixel.image("400x200", false, 'nature'),
+                  view_count: rand(1..15000),
+                  description: Faker::Hipster.sentence(3),
+                  location: Faker::Address.country,
+                  date: Faker::Date.between(365.days.ago, Date.today),
+                  camera_type: Faker::Hacker.abbreviation,
+                  tag_id: rand(1..250),
                   user_id: rand((User.first.id)..(User.first.id+19)))
 end
 
-250.times do |index|
-  Comment.create!(response: Faker::Hacker.say_something_smart,
-                  best: false,
-                  user_id: rand((User.first.id)..(User.first.id+19)),
-                  question_id: rand((Photo.first.id)..(Photo.first.id+99)))
-end
+p "Created #{Photo.count} photos"
 
 250.times do |index|
-  Tag.create!(response: Faker::Hacker.say_something_smart,
-                  best: false,
+  Comment.create!(body: Faker::Hacker.say_something_smart,
                   user_id: rand((User.first.id)..(User.first.id+19)),
-                  question_id: rand((Photo.first.id)..(Photo.first.id+99)))
+                  photo_id: rand((Photo.first.id)..(Photo.first.id+99)))
 end
 
+p "Created #{Comment.count} comments"
 
-p "Created #{User.count} users"
-p "Created #{Photo.count} questions"
-p "Created #{Comment.count} responses"
-p "Created #{Tag.count} responses"
+250.times do |index|
+  Tag.create!(tag: Faker::Book.genre,
+                  photo_id: rand((Photo.first.id)..(Photo.first.id+99)))
+end
+
+p "Created #{Tag.count} tags"
