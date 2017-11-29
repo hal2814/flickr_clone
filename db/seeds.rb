@@ -13,7 +13,7 @@ end
 p "Created #{User.count} users"
 
 100.times do |index|
-  Photo.create!(image: Faker::LoremPixel.image("400x200", false, 'nature'),
+  Photo.create!(image: Faker::LoremPixel.image("400x200", false, 'nature',rand(1..10)),
                   view_count: rand(1..15000),
                   description: Faker::Hipster.sentence(3),
                   location: Faker::Address.country,

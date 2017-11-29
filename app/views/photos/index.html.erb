@@ -18,7 +18,7 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><%= photo.image %></td>
+        <td><%= image_tag photo.image %></td>
         <td><%= photo.view_count %></td>
         <td><%= photo.description %></td>
         <td><%= photo.location %></td>
