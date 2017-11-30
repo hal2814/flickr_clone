@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @photo.image %>
-</p>
+  <%= image_tag @photo.image %>
 
 <p>
-  <strong>View count:</strong>
+  <%= @photo.description %> |
+  <strong>Views:</strong>
   <%= @photo.view_count %>
+
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @photo.description %>
+  <%= @photo.date %>
 </p>
 
 <p>
@@ -20,10 +18,7 @@
   <%= @photo.location %>
 </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @photo.date %>
-</p>
+
 
 <p>
   <strong>Camera type:</strong>
